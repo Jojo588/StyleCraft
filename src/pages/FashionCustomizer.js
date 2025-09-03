@@ -2,13 +2,11 @@ import React, { useState } from 'react'
 import '../App.css'
 import Mannequin from '../components/Mannequin';
 import OutfitSelector from '../components/OutfitSelector'
-import PatternSelector from '../components/PatternSelector'
 import FullScreenPreview from '../components/FullScreenPreview'
 import { Download, Eye, RotateCcw } from 'lucide-react'
 import html2canvas from 'html2canvas'
 import KenteSelector from "../components/KenteSelector.js";
 import kente1 from "../images/kente/1bc449239f79b8667a1108b9e72703a8.jpg";
-
 
 function FashionCustomizer() {
    const [customization, setCustomization] = useState({
@@ -17,7 +15,6 @@ function FashionCustomizer() {
      extraKentes: [],
      secondKente: null,
      firstSecondaryKente: null,
-     clothPattern: "none",
      step: 'outfit',
      mode: null
    });
@@ -51,8 +48,6 @@ function FashionCustomizer() {
   const handleClothDesignChoice = (choice) => {
     if (choice === 'combine') {
       setCustomization(prev => ({ ...prev, step: 'second-kente', mode: 'combine' }))
-    } else if (choice === 'pattern') {
-      setCustomization(prev => ({ ...prev, step: 'pattern-design', mode: 'pattern' }))
     } else {
       setCustomization(prev => ({ ...prev, step: 'keep-simple', mode: 'single' }))
     }
@@ -65,14 +60,6 @@ function FashionCustomizer() {
     }))
   }
 
-  const handlePatternDesign = (pattern) => {
-    setCustomization(prev => ({
-      ...prev,
-      step: 'second-kente',
-      clothPattern: pattern,
-      mode: 'blend'
-    }))
-  }
 
   const handleDoneAddingkentes = () => {
     setCustomization(prev => ({
@@ -86,7 +73,6 @@ function FashionCustomizer() {
       outfitType: null,
       firstKente: '#3b82f6',
       extraKentes: [],
-      clothPattern: null,
       step: 'outfit',
       mode: null
     })
@@ -140,8 +126,6 @@ function FashionCustomizer() {
         return 'Customize Cloth Design'
       case 'second-kente':
         return 'Add More Kente Cloths'
-      case 'pattern-design':
-        return 'Choose Pattern Design'
       case 'keep-simple':
         return 'Choose to Make Your Cloth Simple'
       case 'complete':
@@ -159,8 +143,6 @@ function FashionCustomizer() {
         return 40
       case 'cloth-design':
         return 60
-      case 'pattern-design':
-        return 70
       case 'keep-simple':
         return 70
       case 'second-kente':
@@ -169,7 +151,6 @@ function FashionCustomizer() {
         return 100
     }
   }
-
   return (
     <div className="app">
       <div className="container relative">
@@ -244,7 +225,6 @@ function FashionCustomizer() {
                     <div className="choice-buttons">
                       {[
                         {nav:'Combine Cloths', clothDesignChoice:'combine'},
-                        {nav:'Add Pattern', clothDesignChoice:'pattern'},
                         {nav:'Keep Simple', clothDesignChoice:'none'},
                       ].map(options=>(
                         <button key={options.clothDesignChoice}
@@ -276,14 +256,6 @@ function FashionCustomizer() {
                       Maintain Single Cloth
                     </button>
                   </div>
-                )}
-
-                {customization.step === 'pattern-design' && (
-                  <PatternSelector
-                    title="Choose a pattern"
-                    onPatternSelect={handlePatternDesign}
-                    selectedPattern={customization.clothPattern}
-                  />
                 )}
 
                 {customization.step === 'second-kente' && (
@@ -332,7 +304,6 @@ function FashionCustomizer() {
                             customization.extraKentes.map((col, idx) => (
                               <span key={idx}>+ {col} </span>
                             ))}
-                          {customization.clothPattern && `with ${customization.clothPattern}`}
                         </p>
                       </div>
                     </div>

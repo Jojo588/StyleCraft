@@ -4,7 +4,7 @@ import Footer from './Footer'
 import { Outlet } from 'react-router-dom'
 
 
-const Layout = ({handleLogOut, isLoggedIn}) => {
+const Layout = ({handleLogOut, isLoggedIn, confirmLogOut, setShowLogoutPopup, setChoseToLogout, showLogoutPopup}) => {
   return (
     <div>
         <Header
@@ -17,6 +17,10 @@ const Layout = ({handleLogOut, isLoggedIn}) => {
         <Footer
           handleLogOut = {handleLogOut}
           isLoggedIn ={isLoggedIn}
+          confirmLogOut={confirmLogOut}
+          setShowLogoutPopup={setShowLogoutPopup}
+          setChoseToLogout={setChoseToLogout}
+          showLogoutPopup={showLogoutPopup}
         />
     </div>
   )

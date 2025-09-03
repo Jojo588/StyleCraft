@@ -1,7 +1,8 @@
 import React from 'react'
 import {NavLink,Link} from 'react-router-dom';
+import LogoutPopup from './LogoutPopup';
 
-const Footer = ({isLoggedIn, handleLogOut}) => {
+const Footer = ({isLoggedIn, handleLogOut, confirmLogOut, showLogoutPopup, setChoseToLogout, setShowLogoutPopup}) => {
   const footer_navs =[
   {nav:'about',link:'/about'},
   {nav:"Let's Talk Fashion",link:'/lets-talk-fashion'},
@@ -9,6 +10,13 @@ const Footer = ({isLoggedIn, handleLogOut}) => {
 ]
   return (
       <footer className="border-t border-border bg-muted/30 py-12">
+        {showLogoutPopup && 
+        <LogoutPopup
+         confirmLogOut = {confirmLogOut}
+         setChoseToLogout = {setChoseToLogout}
+         setShowLogoutPopup={setShowLogoutPopup}
+        />
+        }
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>

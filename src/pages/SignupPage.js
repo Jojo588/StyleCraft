@@ -4,11 +4,14 @@ import { Button } from "../components/ui/Button";
 import { Input } from "../components/ui/Input";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/Card";
 import { Separator } from "../components/ui/Separator";
-import { Mail, Lock, User, Chrome, Eye, EyeOff } from "lucide-react";
+import { Mail, Lock, User, Chrome, Eye, EyeOff, OctagonAlert} from "lucide-react";
+import SignedUpPopup from "../components/SignedUpPopup";
 
 export default function SignupPage({ setData, setCurrentUser }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [checkMatchingpasswords, setCheckMatchingPasswords] = useState (false);
+  const [showSignedupPopup, setShowSignedupPopup]= useState(false);
   const navigate = useNavigate();
 
   const [signupEntry, setSignupEntry] = useState({
@@ -30,7 +33,10 @@ export default function SignupPage({ setData, setCurrentUser }) {
     e.preventDefault();
 
     if (signupEntry.createPassword !== signupEntry.confirmPassword) {
-      alert("Passwords do not match!");
+       setCheckMatchingPasswords(true);
+      setTimeout(() => {
+        setCheckMatchingPasswords(false);
+      }, 2000);
       return;
     }
 
@@ -46,12 +52,18 @@ export default function SignupPage({ setData, setCurrentUser }) {
     setCurrentUser(newUser);
     localStorage.setItem("styleCraftCurrentUser", JSON.stringify(newUser));
 
-    navigate('/sign-in');
-    alert(`Hello ${signupEntry.firstName}, you have successfully signed up!`);
+    setShowSignedupPopup(true);
+
   }
 
+  function closeSignedupPopup(){
+    setShowSignedupPopup(false);
+        navigate('/sign-in');
+
+  }
   return (
     <div className="min-h-screen bg-[#FAF9F6]">
+      {showSignedupPopup && <SignedUpPopup signupEntry={signupEntry.firstName} closeSignedupPopup={closeSignedupPopup}/>}
       <main className="py-20">
         <div className="container px-4">
           <div className="max-w-md mx-auto">
@@ -173,6 +185,7 @@ export default function SignupPage({ setData, setCurrentUser }) {
                       </button>
                     </div>
                   </div>
+                  {checkMatchingpasswords && <h2 className="text-red-600 flex gap-1 font-bold"><OctagonAlert/>Passwords do not match</h2>}
 
                   <Button className="w-full bg-teal-500 hover:bg-teal-700 duration-300 transition-all text-white py-6 text-lg font-semibold">
                     Create Account

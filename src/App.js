@@ -13,9 +13,10 @@ import DiscussionDetailPage from './pages/DiscussionDetailPage';
 import SignupPage from './pages/SignupPage';
 import ScrollToTop from './ScrollToTop.js';
 import ProtectedRoute from './components/ProtectedRoute';
-
 const AppWithLoader = () => {
   const [discussions, setDiscussions] = useState([]);
+  const [showLogoutPopup, setShowLogoutPopup] = useState(false);
+  const [choseToLogout, setChoseToLogout] = useState('yes')
   
 
   const [data, setData] = useState(() => {
@@ -40,13 +41,19 @@ const AppWithLoader = () => {
     }
   }, [data, isLoggedIn, currentUser]);
 
-  function handleLogOut() {
-    const confirmLogout = window.confirm("Are you sure you want to log out?");
-    if (confirmLogout) {
+  function handleLogOut(){
+    setShowLogoutPopup(true);
+  }
+
+  function confirmLogOut() {
+    if (choseToLogout) {
       setIsLoggedIn(false);
       setCurrentUser(null);
       localStorage.removeItem("styleCraftCurrentUser");
       localStorage.setItem("styleCraftIsLoggedIn", false);
+    }
+    else{
+      return;
     }
   }
 
@@ -73,7 +80,10 @@ const AppWithLoader = () => {
             <Layout
               isLoggedIn={isLoggedIn}
               handleLogOut={handleLogOut}
-              // currentUser={currentUser}
+              confirmLogOut={confirmLogOut}
+              showLogoutPopup={showLogoutPopup}
+              setShowLogoutPopup={setShowLogoutPopup}
+              setChoseToLogout={setChoseToLogout}
             />
           }
         >

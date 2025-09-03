@@ -70,7 +70,7 @@ function Mannequin({ customization }) {
   return (
     <div
       id="mannequin-display"
-      className="relative w-[500px] h-[550px]"
+      className="relative w-[480px] h-[500px]"
       style={{ backgroundColor: "transparent" }}
     >
       {customization.mode === "combine" && renderOverlay()}
