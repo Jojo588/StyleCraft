@@ -55,7 +55,7 @@ export default function KenteCustomizer({
       )}
 
       {/* Grid of kente options */}
-      <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6 justify-items-center">
+      <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6 justify-items-center max-sm:gap-2 max-sm:grid-cols-4">
         {kenteOptions.map((kente) => (
           <button
             key={kente.name}
