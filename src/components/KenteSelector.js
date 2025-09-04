@@ -47,22 +47,22 @@ export default function KenteCustomizer({
   const [tempKente, setTempKente] = useState(selectedKente || null);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6 p-4 sm:p-6 md:p-8 bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-200">
       {showTitle && (
-        <h3 className="text-lg font-semibold text-gray-800 text-center">
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center tracking-wide">
           {title}
         </h3>
       )}
 
-      {/* centered grid: justify-items-center centers each grid cell's content */}
-      <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 justify-items-center">
+      {/* Grid of kente options */}
+      <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6 justify-items-center">
         {kenteOptions.map((kente) => (
           <button
             key={kente.name}
             onClick={() => setTempKente(kente.value)}
-            className={`w-20 h-20 flex items-center justify-center rounded-lg border-4 overflow-hidden transition-all duration-200 hover:scale-110 ${
+            className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center rounded-xl border-4 overflow-hidden transition-all duration-300 transform hover:scale-105 focus:outline-none ${
               tempKente === kente.value
-                ? "border-gray-800 shadow-lg"
+                ? "border-teal-600 ring-2 ring-teal-400 shadow-lg"
                 : "border-gray-300 hover:border-gray-500"
             }`}
             title={kente.name}
@@ -70,37 +70,36 @@ export default function KenteCustomizer({
             <img
               src={kente.value}
               alt={kente.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-lg"
             />
           </button>
         ))}
       </div>
 
-      <div className="text-center">
-        <div className="text-center">
-          <button
-            onClick={() => onKenteSelect(tempKente)}
-            className="bg-teal-500 hover:bg-teal-700 text-white py-2 px-4 rounded-md shadow-md transition-all duration-300"
-          >
-            Confirm Kente
-          </button>
+      {/* Action buttons */}
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
+        <button
+          onClick={() => onKenteSelect(tempKente)}
+          className="w-full sm:w-auto bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-semibold py-2 px-4 sm:px-6 rounded-lg shadow-md transition-all duration-300 text-sm sm:text-base"
+        >
+          Confirm Kente
+        </button>
 
-          {customization?.step !== "first-kente" ? (
-            <button
-              onClick={doneButton}
-              className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md shadow-md ml-4"
-            >
-              Done
-            </button>
-          ) : (
-            <button
-              onClick={handleDoneAddingkentes}
-              className="bg-white border border-gray-300 hover:bg-yellow-600 text-black hover:text-white py-2 px-4 rounded-md ml-4 duration-300 transition-all"
-            >
-              Next
-            </button>
-          )}
-        </div>
+        {customization?.step !== "first-kente" ? (
+          <button
+            onClick={doneButton}
+            className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-2 px-4 sm:px-6 rounded-lg shadow-md text-sm sm:text-base"
+          >
+            Done
+          </button>
+        ) : (
+          <button
+            onClick={handleDoneAddingkentes}
+            className="w-full sm:w-auto bg-white border border-gray-300 hover:bg-yellow-600 text-gray-700 hover:text-white font-medium py-2 px-4 sm:px-6 rounded-lg shadow-md transition-all duration-300 text-sm sm:text-base"
+          >
+            Next
+          </button>
+        )}
       </div>
     </div>
   );

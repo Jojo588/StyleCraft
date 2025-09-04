@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { X, Download, Share2, Palette } from "lucide-react";
-import Mannequin from "./Mannequin"; // ✅ Uses the same mannequin component as FashionCustomizer
+import Mannequin from "./Mannequin";
 import html2canvas from "html2canvas";
 
 const FullScreenPreview = ({ customization, isOpen, onClose, onEdit }) => {
@@ -12,18 +12,23 @@ const FullScreenPreview = ({ customization, isOpen, onClose, onEdit }) => {
   // ✅ Capture mannequin design as an image
   const handleSave = async () => {
     setIsSaving(true);
-    const mannequinElement = document.getElementById("fullscreen-mannequin-display");
+    const mannequinElement = document.getElementById(
+      "fullscreen-mannequin-display"
+    );
     if (mannequinElement) {
       try {
         const canvas = await html2canvas(mannequinElement, {
           backgroundColor: "#ffffff",
-          scale: 4, // 4x resolution for print-quality
+          scale: 4,
           useCORS: true,
           allowTaint: true,
         });
 
         const link = document.createElement("a");
-        const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, "-");
+        const timestamp = new Date()
+          .toISOString()
+          .slice(0, 19)
+          .replace(/:/g, "-");
         link.download = `fashion-design-${timestamp}.png`;
         link.href = canvas.toDataURL("image/png", 1.0);
 
@@ -58,15 +63,17 @@ const FullScreenPreview = ({ customization, isOpen, onClose, onEdit }) => {
     }
   };
 
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-6xl max-h-[90vh] overflow-y-auto flex flex-col">
-        
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4 md:p-6">
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-6xl max-h-[95vh] overflow-y-auto flex flex-col">
         {/* Header */}
-        <div className="flex justify-between items-center border-b px-4 py-3">
-          <h2 className="text-lg font-semibold">Fashion Design Preview</h2>
+        <div className="flex justify-between items-center border-b px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 rounded-t-xl">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-800 text-center sm:text-left">
+            ✨ Fashion Design Preview
+          </h2>
           <button
-            className="p-1 hover:bg-gray-200 rounded-full transition"
+            className="p-2 hover:bg-gray-200 rounded-full transition"
             onClick={onClose}
           >
             <X size={20} />
@@ -74,31 +81,34 @@ const FullScreenPreview = ({ customization, isOpen, onClose, onEdit }) => {
         </div>
 
         {/* Body */}
-        <div className="p-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            
+        <div className="p-4 sm:p-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {/* ✅ Full mannequin preview */}
             <div className="flex justify-center items-center">
               <div
                 id="fullscreen-mannequin-display"
-                className="bg-gray-100 p-4 rounded-lg flex justify-center items-center w-full h-full"
+                className="relative bg-gray-100 p-4 sm:p-6 rounded-lg sm:rounded-xl flex justify-center items-center w-full shadow-inner overflow-hidden"
               >
                 <Mannequin customization={customization} fullPreview />
               </div>
             </div>
 
             {/* ✅ Design details */}
-            <div className="flex flex-col gap-4">
-              <div className="bg-gray-50 border rounded-lg p-4">
-                <h3 className="text-lg font-semibold mb-3">Design Details</h3>
+            <div className="flex flex-col gap-6">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
+                <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-800">
+                  🎨 Design Details
+                </h3>
 
-                <div className="space-y-4">
+                <div className="space-y-4 sm:space-y-5">
                   {/* Outfit Style */}
-                  <div className="flex items-center gap-2">
-                    <Palette size={16} />
+                  <div className="flex items-center gap-3">
+                    <Palette size={18} className="text-teal-600" />
                     <div>
-                      <p className="text-sm font-medium text-gray-600">Outfit Style</p>
-                      <p className="font-semibold">
+                      <p className="text-xs sm:text-sm font-medium text-gray-500">
+                        Outfit Style
+                      </p>
+                      <p className="font-semibold text-gray-800 text-sm sm:text-base">
                         {customization.outfitType
                           ?.replace("-", " ")
                           .replace(/\b\w/g, (l) => l.toUpperCase())}
@@ -106,67 +116,66 @@ const FullScreenPreview = ({ customization, isOpen, onClose, onEdit }) => {
                     </div>
                   </div>
 
-                  {/* Top Styling */}
+                  {/* Attire Styling */}
                   <div>
-                    <h4 className="font-medium mb-2">Top Styling</h4>
-                    <div className="flex items-center gap-2 mb-1">
-                      <div
-                        className="w-6 h-6 rounded border"
-                        style={{ backgroundColor: customization.topColor }}
-                      />
-                      <span className="text-sm">Primary: {customization.topColor}</span>
-                    </div>
-                    {customization.topSecondaryColor && (
-                      <div className="flex items-center gap-2 mb-1">
+                    <h4 className="font-medium mb-2 sm:mb-3 text-gray-700">
+                      Attire Styling
+                    </h4>
+                    {customization.firstKente && (
+                      <div className="flex items-center gap-3 mb-2">
                         <div
-                          className="w-6 h-6 rounded border"
-                          style={{ backgroundColor: customization.topSecondaryColor }}
+                          className="w-5 h-5 sm:w-6 sm:h-6 rounded-md border shadow-sm"
+                          style={{
+                            backgroundImage: `url(${customization.firstKente})`,
+                            backgroundSize: "cover",
+                          }}
                         />
-                        <span className="text-sm">
-                          Secondary: {customization.topSecondaryColor}
+                        <span className="text-xs sm:text-sm text-gray-700">
+                          Primary: {customization.firstKente?.slice(0, 50)}...
                         </span>
                       </div>
                     )}
-                    {customization.topPattern && (
-                      <p className="text-sm">Pattern: {customization.topPattern}</p>
-                    )}
-                  </div>
-
-                  {/* Bottom Styling (skip if dress) */}
-                  {customization.outfitType !== "dress" && (
-                    <div>
-                      <h4 className="font-medium mb-2">Bottom Styling</h4>
-                      <div className="flex items-center gap-2 mb-1">
+                    {customization.secondKente && (
+                      <div className="flex items-center gap-3 mb-2">
                         <div
-                          className="w-6 h-6 rounded border"
-                          style={{ backgroundColor: customization.bottomColor }}
+                          className="w-5 h-5 sm:w-6 sm:h-6 rounded-md border shadow-sm"
+                          style={{
+                            backgroundImage: `url(${customization.secondKente})`,
+                            backgroundSize: "cover",
+                          }}
                         />
-                        <span className="text-sm">Primary: {customization.bottomColor}</span>
+                        <span className="text-xs sm:text-sm text-gray-700">
+                          Secondary: {customization.secondKente}
+                        </span>
                       </div>
-                      {customization.bottomSecondaryColor && (
-                        <div className="flex items-center gap-2 mb-1">
+                    )}
+                    {customization.extraKentes?.length > 0 &&
+                      customization.extraKentes.map((k, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-center gap-3 mb-2"
+                        >
                           <div
-                            className="w-6 h-6 rounded border"
-                            style={{ backgroundColor: customization.bottomSecondaryColor }}
+                            className="w-5 h-5 sm:w-6 sm:h-6 rounded-md border shadow-sm"
+                            style={{
+                              backgroundImage: `url(${k})`,
+                              backgroundSize: "cover",
+                            }}
                           />
-                          <span className="text-sm">
-                            Secondary: {customization.bottomSecondaryColor}
+                          <span className="text-xs sm:text-sm text-gray-700">
+                            Extra: {k?.slice(0, 50)}...
                           </span>
                         </div>
-                      )}
-                      {customization.bottomPattern && (
-                        <p className="text-sm">Pattern: {customization.bottomPattern}</p>
-                      )}
-                    </div>
-                  )}
+                      ))}
+                  </div>
                 </div>
               </div>
 
               {/* ✅ Action Buttons */}
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 sm:gap-4">
                 <button
                   onClick={handleSave}
-                  className="bg-blue-600 text-white flex items-center justify-center gap-2 px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 text-white flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg font-medium shadow-md hover:from-blue-700 hover:to-blue-800 transition-all duration-300 disabled:opacity-50 text-sm sm:text-base"
                   disabled={isSaving}
                 >
                   {isSaving ? (
@@ -176,43 +185,45 @@ const FullScreenPreview = ({ customization, isOpen, onClose, onEdit }) => {
                     </>
                   ) : (
                     <>
-                      <Download size={16} /> Save High-Quality Image
+                      <Download size={18} /> Save High-Quality Image
                     </>
                   )}
                 </button>
 
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={handleShare}
-                    className="border border-gray-300 text-gray-700 flex items-center justify-center gap-2 px-4 py-2 rounded hover:bg-gray-100"
+                    className="flex-1 border border-gray-300 text-gray-700 flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg font-medium shadow-sm hover:bg-gray-100 transition text-sm sm:text-base"
                   >
-                    <Share2 size={16} /> Share
+                    <Share2 size={18} /> Share
                   </button>
                   <button
                     onClick={onEdit}
-                    className="border border-gray-300 text-gray-700 flex items-center justify-center gap-2 px-4 py-2 rounded hover:bg-gray-100"
+                    className="flex-1 border border-gray-300 text-gray-700 flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg font-medium shadow-sm hover:bg-gray-100 transition text-sm sm:text-base"
                   >
-                    <Palette size={16} /> Edit Design
+                    <Palette size={18} /> Edit Design
                   </button>
                 </div>
               </div>
 
               {/* ✅ Success Message */}
               {saveSuccess && (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex flex-col gap-1">
-                  <div className="flex items-center gap-2 text-green-600 font-medium">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3 sm:p-4 shadow-sm">
+                  <div className="flex items-center gap-2 text-green-600 font-semibold text-sm sm:text-base">
                     ✅ Success!
                   </div>
-                  <p className="text-sm text-green-700">
+                  <p className="text-xs sm:text-sm text-green-700">
                     Your fashion design has been saved to your device.
                   </p>
                 </div>
               )}
 
               {/* ✅ Tips */}
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-                <h4 className="font-medium mb-2">💡 Pro Tips:</h4>
-                <ul className="list-disc list-inside text-sm text-yellow-800 space-y-1">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 sm:p-4 shadow-sm">
+                <h4 className="font-medium mb-2 sm:mb-3 text-yellow-800 text-sm sm:text-base">
+                  💡 Pro Tips:
+                </h4>
+                <ul className="list-disc list-inside text-xs sm:text-sm text-yellow-800 space-y-1">
                   <li>Images are saved in ultra-high quality (4x resolution)</li>
                   <li>Perfect for printing or sharing on social media</li>
                   <li>Try different lighting by changing background colors</li>
