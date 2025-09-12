@@ -1,6 +1,6 @@
 // src/pages/HomePage.js
 import React from "react";
-import kenteOutfit from '../components/images/9081291f584c6b55c752e789c5533de8.jpg'
+import kenteOutfit from '../components/images/HomePageKenteDress.png'
 import {Link} from 'react-router-dom';
 import { Palette, Shirt, Share2, Sparkles } from "lucide-react";
 import { Button } from "../components/ui/Button";
@@ -11,38 +11,38 @@ export default function HomePage() {
 
 
       {/* Hero Section */}
-      <section id="home" className="py-20 lg:py-32">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <h1 className="text-4xl lg:text-6xl font-serif font-bold text-foreground leading-tight">
+      <section id="home" className="py-20 md:py-32">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 ">
+          <div className="grid grid-cols-3 gap-12 max-lg:gap-6 items-center">
+            <div className="space-y-8 max-lg:space-y-3 col-span-2 max-md:backdrop-blur-sm max-md:h-80 max-md:col-span-3 max-md:items-center">
+              <h1 className="text-4xl lg:text-6xl md:text-5xl font-serif font-bold text-foreground leading-tight">
                 Unleash Your Style. <span className="text-primary text-teal-500">Design the Future</span> of Fashion.
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Create outfits that express your personality with our interactive mannequin and fashion customizer.
                 Mix colors, patterns, and styles to craft your unique look.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex sm:flex-row gap-4">
                 <Link to='/fashion-customizer'>
-                <Button className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg text-lg bg-teal-500 hover:bg-teal-700 duration-300">
+                <Button className="border border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg text-lg bg-transparent border-teal-500 text-teal-500 hover:bg-teal-700 duration-300">
                   Start Customizing
                 </Button>
                 </Link>
+                <Link
+                to='/about'>
                 
-                <Button className="border border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg text-lg bg-transparent border-teal-500 text-teal-500 hover:bg-teal-700 duration-300">
-                  <Link
-                  to='/about'>
+                <Button className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg text-lg bg-teal-500 hover:bg-teal-700 duration-300">
                   Learn More
-                  </Link>
                 </Button>
+                 </Link>
               </div>
             </div>
-            <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl flex items-center justify-center">
+            <div className="relative max-md:-z-50 max-md:absolute max-md:top-20 max-md:left-1/2 max-md:-translate-x-1/2 max-md:col-span-3">
+              <div className="aspect-square flex items-center justify-center">
             <img
               src={kenteOutfit}
               alt="Interactive Fashion Mannequin"
-              className="w-full  object-cover rounded-2xl"
+              className="w-full object-cover max-md:h-80 "
             />
           </div>
 

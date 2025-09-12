@@ -39,7 +39,7 @@ const Footer = ({isLoggedIn, handleLogOut, confirmLogOut, showLogoutPopup, setCh
               ))}
               {
                 isLoggedIn?
-              <button className='capitalize duration-300 transition-all text-red-400 hover:text-red-600'
+              <button className='capitalize duration-300 transition-all text-red-600 hover:text-red-700'
               onClick={handleLogOut}>
                 logout
               </button>
