@@ -1,9 +1,10 @@
 {
   "files": {
-    "main.css": "/StyleCraft/static/css/main.3845439f.css",
-    "main.js": "/StyleCraft/static/js/main.e732380f.js",
+    "main.css": "/StyleCraft/static/css/main.4b163a82.css",
+    "main.js": "/StyleCraft/static/js/main.43e13f5d.js",
     "static/media/7082184.jpg": "/StyleCraft/static/media/7082184.f3b7261e8d83e554b2c1.jpg",
     "static/media/6919889.jpg": "/StyleCraft/static/media/6919889.0c2cdf70a439e3c2bed3.jpg",
+    "static/media/HomePageKenteDress.png": "/StyleCraft/static/media/HomePageKenteDress.cfe23e8e8b46752d89ff.png",
     "static/media/6280430.jpg": "/StyleCraft/static/media/6280430.ae5670ed5979ae146db5.jpg",
     "static/media/vaticankentedetail1sm-edited.jpg": "/StyleCraft/static/media/vaticankentedetail1sm-edited.927fabea7fa6a52ecbbc.jpg",
     "static/media/il_1140xN.3229124509_84xq.jpg": "/StyleCraft/static/media/il_1140xN.3229124509_84xq.55b962cd13dd2e708438.jpg",
@@ -17,11 +18,11 @@
     "static/media/Picsart_25-08-09_01-31-50-875.png": "/StyleCraft/static/media/Picsart_25-08-09_01-31-50-875.709a9dd7a720a6b9772d.png",
     "static/media/Picsart_25-08-08_23-11-39-401.png": "/StyleCraft/static/media/Picsart_25-08-08_23-11-39-401.11e976fc64d4974f8665.png",
     "index.html": "/StyleCraft/index.html",
-    "main.3845439f.css.map": "/StyleCraft/static/css/main.3845439f.css.map",
-    "main.e732380f.js.map": "/StyleCraft/static/js/main.e732380f.js.map"
+    "main.4b163a82.css.map": "/StyleCraft/static/css/main.4b163a82.css.map",
+    "main.43e13f5d.js.map": "/StyleCraft/static/js/main.43e13f5d.js.map"
   },
   "entrypoints": [
-    "static/css/main.3845439f.css",
-    "static/js/main.e732380f.js"
+    "static/css/main.4b163a82.css",
+    "static/js/main.43e13f5d.js"
   ]
 }
