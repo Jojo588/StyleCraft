@@ -14,7 +14,7 @@ export default function HomePage() {
       <section id="home" className="py-20 md:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 ">
           <div className="grid grid-cols-3 gap-12 max-lg:gap-6 items-center">
-            <div className="space-y-8 max-lg:space-y-3 col-span-2 max-md:backdrop-blur-sm max-md:h-80 max-md:col-span-3 max-md:items-center">
+            <div className="space-y-8 max-lg:space-y-3 col-span-2 max-md:backdrop-blur-md max-md:h-80 max-md:col-span-3 max-md:items-center">
               <h1 className="text-4xl lg:text-6xl md:text-5xl font-serif font-bold text-foreground leading-tight">
                 Unleash Your Style. <span className="text-primary text-teal-500">Design the Future</span> of Fashion.
               </h1>
