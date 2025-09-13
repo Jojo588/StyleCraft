@@ -1,16 +1,28 @@
 import React,{useState} from 'react'
-import {NavLink,Link} from 'react-router-dom';
+import {NavLink,Link, useLocation} from 'react-router-dom';
 import { Button } from './ui/Button';
 import SubMenu from './SubMenu';
 
 const Header = ({isLoggedIn, handleLogOut }) => {
   const [submenuOpen, setSubMenuOpen] = useState(false);
+  
+  const location = useLocation();
+  const pathname = location.pathname;
 
-const navs =[
-  {nav:'about',link:'/about'},
-  {nav:"Let's Talk Fashion",link:'/lets-talk-fashion'},
-  {nav:'Gallery',link:'/gallery'},
-]
+  const navs = [
+  { nav: 'About', link: '/about' },
+  {
+    nav: "Let's Talk Fashion",
+    link:
+      pathname === '/recent-discussions'
+        ? '/recent-discussions'
+        : pathname.startsWith('/discussion-detail/')
+        ? pathname
+        : '/lets-talk-fashion',
+  },
+  { nav: 'Gallery', link: '/gallery' },
+];
+
 
   return (
           <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 fixed top-0 w-full z-50">

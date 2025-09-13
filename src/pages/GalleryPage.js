@@ -125,11 +125,6 @@ const handleImageLike = (id) => {
   };
 
 
-
-
-
-
-
   
   
   return (
@@ -173,11 +168,6 @@ const handleImageLike = (id) => {
                 )
               )}
             </div>
-            {/* <button className="flex items-center px-3 py-1 border rounded-lg text-sm hover:bg-yellow-600 hover:text-white duration-300">
-              <Filter className="w-4 h-4 mr-2" />
-              More Filters
-            </button>
-          </div> */}
         </div>
       </section>
 

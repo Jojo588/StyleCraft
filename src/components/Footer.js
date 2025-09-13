@@ -1,11 +1,20 @@
 import React from 'react'
-import {NavLink,Link} from 'react-router-dom';
+import {NavLink,Link,useLocation} from 'react-router-dom';
 import LogoutPopup from './LogoutPopup';
 
 const Footer = ({isLoggedIn, handleLogOut, confirmLogOut, showLogoutPopup, setChoseToLogout, setShowLogoutPopup}) => {
+
+  const location = useLocation();
+  const pathname = location.pathname;
+
   const footer_navs =[
   {nav:'about',link:'/about'},
-  {nav:"Let's Talk Fashion",link:'/lets-talk-fashion'},
+  {nav:"Let's Talk Fashion",link:
+      pathname === '/recent-discussions'
+        ? '/recent-discussions'
+        : pathname.startsWith('/discussion-detail/')
+        ? pathname
+        : '/lets-talk-fashion',},
   {nav:'Gallery',link:'/gallery'},
 ]
   return (
