@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/StyleCraft/static/css/main.4b163a82.css",
-    "main.js": "/StyleCraft/static/js/main.64119a60.js",
+    "main.css": "/StyleCraft/static/css/main.f154d88b.css",
+    "main.js": "/StyleCraft/static/js/main.7ebd9ffc.js",
     "static/media/7082184.jpg": "/StyleCraft/static/media/7082184.f3b7261e8d83e554b2c1.jpg",
     "static/media/6919889.jpg": "/StyleCraft/static/media/6919889.0c2cdf70a439e3c2bed3.jpg",
     "static/media/HomePageKenteDress.png": "/StyleCraft/static/media/HomePageKenteDress.cfe23e8e8b46752d89ff.png",
@@ -18,11 +18,11 @@
     "static/media/Picsart_25-08-09_01-31-50-875.png": "/StyleCraft/static/media/Picsart_25-08-09_01-31-50-875.709a9dd7a720a6b9772d.png",
     "static/media/Picsart_25-08-08_23-11-39-401.png": "/StyleCraft/static/media/Picsart_25-08-08_23-11-39-401.11e976fc64d4974f8665.png",
     "index.html": "/StyleCraft/index.html",
-    "main.4b163a82.css.map": "/StyleCraft/static/css/main.4b163a82.css.map",
-    "main.64119a60.js.map": "/StyleCraft/static/js/main.64119a60.js.map"
+    "main.f154d88b.css.map": "/StyleCraft/static/css/main.f154d88b.css.map",
+    "main.7ebd9ffc.js.map": "/StyleCraft/static/js/main.7ebd9ffc.js.map"
   },
   "entrypoints": [
-    "static/css/main.4b163a82.css",
-    "static/js/main.64119a60.js"
+    "static/css/main.f154d88b.css",
+    "static/js/main.7ebd9ffc.js"
   ]
 }
